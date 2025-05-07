@@ -1,0 +1,41 @@
+<!-- logined.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logged in Page</title>
+  <link rel="stylesheet"  href="/logined.css">
+  <!-- Add a hidden input field to store isAdmin value -->
+  <input type="hidden" id="isAdminValue" value="<%= JSON.stringify(userData.isAdmin) %>">
+</head>
+<body>
+<img class="snbplogo" src="/images/snbplogo.png" alt="SNBP Logo">
+<div class="table-container">
+    <div class="h2div">
+        <h2 class="h2tag">SNBP INTERNATIONAL SCHOOL</h2>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Child Name</th>
+          <th>Class</th>
+          <th>Login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img class="userimg" src="data:image/png;base64,<%= userData.imageData %>" alt="User Image"></td>
+          <td id="childname"><%= userData.student_name %><%= userData.admin_name %></td>
+          <td id="classname"><%= userData.class %><%= userData.admin_class %><%= userData.division %><%= userData.admin_division %></td>
+          <td><button id="loginButton" class="login-button">Login</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   <script src="/logined.js"></script>
+</body>
+</html>

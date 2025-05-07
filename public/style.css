@@ -1,0 +1,1168 @@
+@import url("https://fonts.googleleapis.com/css2?family=Poopins:wght@300;400;500;600;700;800;900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab', serif;
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  
+}
+
+
+.border {
+    
+    height: 395px;
+    width: 1000px;
+    box-sizing: border-box;
+    position: relative; /* Add relative positioning to create a positioning context */
+}
+
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 420px;
+    height: 390px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height .2s ease;
+    transform: translateY(20px);
+    animation: fadeInUp 0.9s forwards;
+    overflow: hidden;
+}
+
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+
+}
+
+/* 
+.wrapper.active {
+    height: 550px;
+} */
+
+
+
+/* .wrapper .form-box.login {
+    transition: transfomr .18s ease;   
+    transition: translateX(0);
+} */
+/* 
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transform: translateX(400px);
+} */
+
+/* .wrapper.active .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
+} */
+
+.form-box h2 {
+    font-size: 2em;
+    color: black;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin: 30px 0;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: black;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    color: black;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+}
+
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: black;
+    line-height: 57px;
+}
+
+
+/* .input-box.icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: white;
+    line-height: 57px;
+
+} */
+
+/* .btn {
+    width: 100%;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+} */
+
+.btn {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: black;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 6px;
+    transition: left 0.8s ease; /* Increased duration for a slower shine effect */
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    box-shadow: 0 0 40px #000000;
+  
+}
+
+/* .login-register {
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+
+} */
+
+
+
+/* .login-register p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+} */
+
+/* .register {
+    font-size: .9em;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    margin: 1px 0 10px;
+}
+
+
+.register p a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.register p a:hover {
+    text-decoration: underline;
+} */
+
+.tagline {
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size: x-large;
+    position: absolute;
+    top: 60%;
+    
+    
+}
+
+
+.tagline span::after {
+    content: '';
+    display: inline-block;
+    top: 0;
+    color: #e6dedb;
+    animation: slash 2s ease-in-out infinite; 
+    padding: 40px;
+}
+
+.tagline:hover {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.snbplogo {
+    top: 10%;
+    padding-left: 100px;
+    transform-origin: top center;
+    animation: swing 12s infinite ease-in-out; 
+    
+}
+
+.snbpimage {
+    width: 230px;
+    height: auto;
+}
+
+.snbplogo:hover .snbpimage {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+    transform: translateY(-1px);
+    animation: fadeInUp 0.s forwards 0.2s;
+}
+
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    80% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* @media only screen and (max-width: 767px) { */
+    /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto Slab', serif;
+    }
+    
+    body {
+        font-family: 'Roboto Slab', serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url('images/background.jpg'); 
+        background-color: white;
+        background-position: center;
+        
+    } 
+    
+    .wrapper {
+        width: 380px;
+        height: 380px;
+        top: 80px;
+        left: 0%;
+    }
+    
+    .snbplogo {
+        position: fixed;
+        top: 0%;
+        left: 25%;
+    }
+
+    .snbpimage {
+        width: 200px;
+        height: auto;
+    } */
+
+    
+/* } */
+
+@media only screen and (max-width: 359px) {
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to right, #aaffaa, #66ccff);
+        background-size: cover;
+        background-position: center;
+        
+      }
+
+    .border {
+        
+        height: 100vh;
+        width: 100vh;
+        box-sizing: border-box;
+        position: relative; /* Add relative positioning to create a positioning context */
+    }
+    
+    .wrapper {
+        position: absolute;
+        bottom: -20%;
+        margin-top: auto; /* This helps push the wrapper to the bottom */
+        width: 300px;
+        height: 330px;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 15px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 2.5%;
+        
+    }
+    
+    
+    
+    .wrapper .form-box {
+        width: 100%;
+        padding: 40px;
+    
+    }
+    
+    .form-box h2 {
+        font-size: 22px;
+        color: black;
+        text-align: center;
+    }
+    
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid black;
+        margin: 30px 0;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: black;
+        font-weight: 5;
+        pointer-events: none;
+        transition: .5s;
+    
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        color: black;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    
+    }
+    
+ 
+    .tagline {
+        font-family: 'Roboto Slab', serif;
+        font-weight: bold;
+        font-size: 17px;
+        left: 1%;
+    }
+    
+    #typing-text {
+        white-space: pre-line; /* Preserve whitespace and interpret line breaks */
+        display: block; /* Display the text in a block to break onto new lines */
+    }
+    
+    #typing-text::after {
+        content: '';
+        display: inline-block;
+        top: 0;
+        color: #e6dedb;
+        animation: slash 2s ease-in-out infinite;
+        padding: 20px;
+    }
+    
+    .tagline:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    
+    .snbplogo {
+        top: 0%;
+        padding-left: 26%;
+        
+        
+    }
+    
+    .snbpimage {
+        width: 150px;
+        height: auto;
+    }
+    
+    .snbplogo:hover .snbpimage {
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+                drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+    }
+}
+  
+
+@media only screen and (min-width: 360px) and (max-width: 381px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to right, #ff9a8b, #ffba90, #ffca80, #f6f68d, #d0ebab, #a7e0a3, #77ddff);
+        background-size: cover;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+      }
+
+    .border {
+        
+        height: 100vh;
+        width: 100vh;
+        box-sizing: border-box;
+        position: relative; /* Add relative positioning to create a positioning context */
+    }
+    
+    .wrapper {
+        position: absolute;
+        bottom: 10%;
+        left: 3.5%;
+        margin-top: auto; /* This helps push the wrapper to the bottom */
+        width: 340px;
+        height: 360px;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    
+    
+    .wrapper .form-box {
+        width: 100%;
+        padding: 40px;
+    
+    }
+    
+    .form-box h2 {
+        font-size: 2em;
+        color: black;
+        text-align: center;
+    }
+    
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid black;
+        margin: 30px 0;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: black;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 1em;
+        color: black;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    
+    }
+    
+ 
+    .tagline {
+        font-family: 'Roboto Slab', serif;
+        font-weight: bold;
+        font-size: 19px;
+        left: 2%;
+    }
+    
+    #typing-text {
+        white-space: pre-line; /* Preserve whitespace and interpret line breaks */
+        display: block; /* Display the text in a block to break onto new lines */
+    }
+    
+    #typing-text::after {
+        content: '';
+        display: inline-block;
+        top: 0;
+        color: #e6dedb;
+        animation: slash 2s ease-in-out infinite;
+        padding: 20px;
+    }
+    
+    .tagline:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    
+    .snbplogo {
+        top: 0%;
+        left: 2%;
+        
+    }
+    
+    .snbpimage {
+        width: 180px;
+        height: auto;
+    }
+    
+    .snbplogo:hover .snbpimage {
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+                drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+    }
+}
+  
+
+@media only screen and (min-width: 381px) and (max-width: 400px) {
+
+
+ 
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to right, #aaffaa, #66ccff);
+        background-size: cover;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+      }
+
+    .border {
+       
+        height: 100vh;
+        width: 100vh;
+        box-sizing: border-box;
+        position: relative; /* Add relative positioning to create a positioning context */
+    }
+    
+    .wrapper {
+        position: absolute;
+        bottom: 15%;
+        left: 3.5%;
+        top: 0;
+        margin-top: auto; /* This helps push the wrapper to the bottom */
+        width: 360px;
+        height: 400px;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    
+    
+    .wrapper .form-box {
+        width: 100%;
+        padding: 40px;
+    
+    }
+    
+    .form-box h2 {
+        font-size: 2em;
+        color: black;
+        text-align: center;
+    }
+    
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid black;
+        margin: 30px 0;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: black;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 1em;
+        color: black;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    
+    }
+    
+ 
+    .tagline {
+        font-family: 'Roboto Slab', serif;
+        font-weight: bold;
+        font-size: 21px;
+        padding-left: 2px;
+    }
+    
+    #typing-text {
+        white-space: pre-line; /* Preserve whitespace and interpret line breaks */
+        display: block; /* Display the text in a block to break onto new lines */
+    }
+    
+    #typing-text::after {
+        content: '';
+        display: inline-block;
+        top: 0;
+        color: #e6dedb;
+        animation: slash 2s ease-in-out infinite;
+        padding: 20px;
+    }
+    
+    .tagline:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    
+    .snbplogo {
+        top: 0%;
+        padding-left: 20%;
+        
+    }
+    
+    .snbpimage {
+        width: 230px;
+        height: auto;
+    }
+    
+    .snbplogo:hover .snbpimage {
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+                drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+    }
+  }
+  
+
+@media only screen and (min-width: 430px) and (max-width: 450px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to right, #aaffaa, #66ccff);
+        background-size: cover;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+      }
+
+      
+    .border {
+        
+        height: 100vh;
+        width: 100vh;
+        box-sizing: border-box;
+        position: relative; /* Add relative positioning to create a positioning context */
+    }
+    
+    .wrapper {
+        position: absolute;
+        bottom: 20%;
+        top: 0;
+        left: 5%;
+        margin-top: auto; /* This helps push the wrapper to the bottom */
+        width: 380px;
+        height: 400px;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    
+    
+    .wrapper .form-box {
+        width: 100%;
+        padding: 40px;
+    
+    }
+    
+    .form-box h2 {
+        font-size: 2em;
+        color: black;
+        text-align: center;
+    }
+    
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid black;
+        margin: 30px 0;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: black;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 1em;
+        color: black;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    
+    }
+    
+ 
+    .tagline {
+        font-family: 'Roboto Slab', serif;
+        font-weight: bold;
+        font-size: 21px;
+        left: 5.3%;
+    }
+    
+    #typing-text {
+        white-space: pre-line; /* Preserve whitespace and interpret line breaks */
+        display: block; /* Display the text in a block to break onto new lines */
+    }
+    
+    #typing-text::after {
+        content: '';
+        display: inline-block;
+        top: 0;
+        color: #e6dedb;
+        animation: slash 2s ease-in-out infinite;
+        
+    }
+    
+    .tagline:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    
+    .snbplogo {
+        top: 0%;
+        left: 5.2%;
+        
+    }
+    
+    .snbpimage {
+        width: 230px;
+        height: auto;
+    }
+    
+    .snbplogo:hover .snbpimage {
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+                drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+    }
+  }
+
+@media only screen and (min-width: 401px) and (max-width: 429px) {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(to right, #aaffaa, #66ccff);
+        background-size: cover;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+      }
+
+      
+    .border {
+        
+        height: 100vh;
+        width: 100vh;
+        box-sizing: border-box;
+        position: relative; /* Add relative positioning to create a positioning context */
+    }
+    
+    .wrapper {
+        position: absolute;
+        bottom: 15%;
+        left: 3.5%;
+        top: 0;
+        margin-top: auto; /* This helps push the wrapper to the bottom */
+        width: 380px;
+        height: 400px;
+        background: transparent;
+        border: 1px solid black;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    
+    
+    
+    .wrapper .form-box {
+        width: 100%;
+        padding: 40px;
+    
+    }
+    
+    .form-box h2 {
+        font-size: 2em;
+        color: black;
+        text-align: center;
+    }
+    
+    .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid black;
+        margin: 30px 0;
+    }
+    
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 3.5%;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: black;
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    
+    }
+    
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+    
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 1em;
+        color: black;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    
+    }
+    
+ 
+    .tagline {
+        font-family: 'Roboto Slab', serif;
+        font-weight: bold;
+        font-size: 21px;
+        left: 3.5%;
+        
+    }
+    
+    #typing-text {
+        white-space: pre-line; /* Preserve whitespace and interpret line breaks */
+        display: block; /* Display the text in a block to break onto new lines */
+    }
+    
+    #typing-text::after {
+        content: '';
+        display: inline-block;
+        top: 0;
+        color: #e6dedb;
+        animation: slash 2s ease-in-out infinite;
+        
+    }
+    
+    .tagline:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    
+    .snbplogo {
+        top: 0%;
+        left: 3.5%;
+        
+    }
+    
+    .snbpimage {
+        width: 230px;
+        height: auto;
+    }
+    
+    .snbplogo:hover .snbpimage {
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.4)) 
+                drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .wrapper1 {
+    width: 280px;
+    height: 200px;
+    border-radius: 4px;
+    position: absolute;
+    top: 2%;
+    z-index: 1;
+    display: none; /* Initially hide the popup */
+}
+
+.block1 {
+    margin-left: 0%;
+    width: 280px;
+    height: 70px;
+    background-color: rgb(63, 62, 62);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.h5 {
+    color: white;
+    padding-left: 13px;
+    padding-top: 23px;
+    font-size: 18px;
+}
+
+.block2 {
+    width: 280px;
+    height: 70px;
+    background-color: rgb(36, 34, 34);
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.block2but {
+    align-self: right;
+    height: 70px;
+    width: 140px;
+}
+
+.closebut {
+    color: black;
+    background-color: rgb(157, 226, 53);
+    margin-left: 150px;
+    margin-top: 20px;
+    padding: 7px 35px;
+    border: solid white 1.5px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.closebut:hover {
+    background-color:  rgb(133, 182, 59);
+}
+  
+  

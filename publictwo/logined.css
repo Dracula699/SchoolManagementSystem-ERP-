@@ -1,0 +1,172 @@
+
+.html {
+  font-size: 62.5%;
+}
+
+
+.h2div {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(45deg, #2E8B57, #4CAF50);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  }
+  
+/* Logo styles */
+/* Logo styles */
+.snbplogo {
+    width: 10rem; /* Adjust the size as needed */
+    height: auto;
+    margin-bottom: 1rem; /* Add some margin below the logo for spacing */
+    filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.3)); /* Add a subtle drop shadow */
+    animation: pulse 2s infinite; /* Add a pulsing animation */
+  }
+  
+  /* Add a cool scale effect to the logo on hover */
+  .snbplogo:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    animation: none; /* Disable the pulsing animation on hover */
+  }
+  
+  /* Pulsing animation */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .h2tag {
+    margin-bottom: 0;
+    color: black;
+    flex-grow: 1;
+    display: flex; /* Center the h2tag */
+    justify-content: center; /* Center the h2tag */
+    
+    align-items: center; /* Center the h2tag */
+    text-shadow: 0.2rem 0.2rem 0.2rem rgba(26, 21, 21, 0.5); /* Add a subtle text shadow */
+    background: linear-gradient(45deg, #2E8B57, #4CAF50);
+    font-size: 1.5rem;
+    color: #1c2841;
+    
+    
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Ensure the body covers at least the viewport height */
+    margin: 0;
+    background: url(images/background.jpg);
+    background-size: cover; /* Use cover to fill the background */
+  }
+
+  .userimg {
+
+    border-radius: 2rem;
+    margin-right: 0.5rem;
+    margin-left: 0.2rem;
+    width: 50px;
+    height: 50px; /* Ensure a square aspect ratio for a perfect circle */
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    align-self: center;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: transform 0.3s ease-in-out;
+    
+    
+  }
+
+  
+
+  
+  /* Add a hover effect to the user image */
+  .userimg:hover {
+    transform: scale(1.1);
+  }
+
+  
+  .table-container {
+    width: 70%;
+    margin: 2rem auto; /* Center the container using auto margins */
+    overflow-x: auto; /* Add horizontal scrollbar if content overflows */
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 0.2rem solid black;
+    padding: 0.8rem;
+    text-align: left;
+    background-color: white;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+/* Login button styles */
+.login-button {
+    padding: 0.5rem 1rem;
+    background-color: #534caf;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-left: auto; /* Move the button to the right */
+  }
+  
+  /* Button shine animation */
+  .login-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, transparent 70%);
+    transform: translate(-30%, -30%) rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .login-button:hover::before {
+    opacity: 1;
+    animation: shine 1s infinite linear;
+  }
+  
+  /* Shine animation keyframes */
+  @keyframes shine {
+    0% {
+      transform: translate(-30%, -30%) rotate(45deg);
+    }
+    100% {
+      transform: translate(30%, 30%) rotate(45deg);
+    }
+  }
+  
+  
+  .h2tag {
+    padding-left: 2rem;
+    margin-bottom: 0;
+    background-color: #4CAF50;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  
+  .profile {
+    border: 2px bold black;
+  }
+
