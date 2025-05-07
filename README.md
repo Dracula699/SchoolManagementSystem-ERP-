@@ -29,7 +29,7 @@ Before you start, make sure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Dracula699/SchoolManagementSystem-ERP-
+https://github.com/Dracula699/SchoolManagementSystem-ERP-.git
 cd SchoolManagementSystem-ERP-
 
 ### 2. Install Dependencies
