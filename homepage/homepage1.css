@@ -1,0 +1,343 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+
+
+
+  .noteswrapper {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2px;
+    border: 1px solid black;
+  }
+  
+  .noteswrapper label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .noteswrapper select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .noteswrapper select:hover {
+    border-color: #007bff;
+  }
+  
+  .noteswrapper select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  }
+  .noteswrapper #resultDiv {
+    margin-top: 20px;
+  }
+  
+  .noteswrapper #resultDiv table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .noteswrapper #resultDiv th,
+  .noteswrapper #resultDiv td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid black;
+  }
+  
+  .noteswrapper #resultDiv th {
+    background-color: #a4d5ea;
+    color: #fff;
+  }
+  
+  .noteswrapper #resultDiv tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .noteswrapper #resultDiv td a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .noteswrapper #resultDiv td a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
+
+.noteswrapper {
+    display: none;
+}
+
+
+  
+
+.home-section {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: calc(100% - 250px); /* Adjust based on sidebar width */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+}
+
+
+#header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+}
+
+#headerspan {
+    font-size: 1.5em;
+    padding-left: 3px;
+}
+
+#currentDate {
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+.dp {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    margin-right: -20%;
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    
+}
+
+p {
+    font-size: 1em;
+    margin: 0;
+    margin-right: 15%;
+}
+
+/* Aligning the elements in the header */
+#headerspan,
+#currentDate,
+.dp,
+.student-info {
+    display: flex;
+    align-items: center;
+}
+
+/* Ensuring proper alignment for student info */
+.student-info p {
+    margin: 0;
+}
+
+
+
+
+.logo_details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff; /* White background color */
+    padding: 10px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding in the total width/height */
+    margin-left: 2px;
+    border: black 1px solid;
+    
+}
+
+
+.logo_name {
+    font-size: 1em;
+    margin-left: 10px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif; /* Use a suitable font family */
+    text-transform: uppercase; /* Convert text to uppercase */
+    letter-spacing: 1px; /* Adjust letter spacing as needed */
+    color: #fff; /* Match the header color or use your preferred color */
+}
+
+.sidebar {
+    min-height: 100vh;
+    width: 250px;
+    padding: 6px 14px;
+    z-index: 99;
+    background-color: #2c3e50;
+    transition: all 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.dp {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    align-self: center;
+    border-radius: 50%;
+    border: 2px solid #3498db; /* Adjust border color */
+}
+
+.sidebar i {
+    color: black;
+    height: 60px;
+    line-height: 60px;
+    min-width: 50px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.sidebar .nav-list {
+    margin-top: 20px;
+    height: 100%;
+}
+
+.sidebar li {
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+}
+
+.sidebar li .tooltip {
+    position: absolute;
+    top: 20px;
+    left: calc(100% + 20px);
+    z-index: 3;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 14px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar li:hover .tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(220%);
+}
+
+.sidebar li a {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+    background-color: white; 
+    position: relative;
+    transition: all 0.5s ease;
+    top: 80px;
+    z-index: 12;
+    border-radius: 2px;
+}
+
+.sidebar li a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    background-color: #3498db;
+    border-radius: 3px;
+    transition: transform 0.7s ease-in-out;
+    transform-origin: left;
+    z-index: -2;
+}
+
+.sidebar li a:hover::after {
+    transform: scaleX(1);
+}
+
+.sidebar li a .link_name {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+.sidebar li a:hover .link_name,
+.sidebar li a:hover i {
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.sidebar li i {
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.sidebar li.profile {
+    position: fixed;
+    height: 60px;
+    width: 78px;
+    left: 0;
+    bottom: -8px;
+    padding: 10px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar .profile .profile_details {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.sidebar li img {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.sidebar li.profile .name,
+.sidebar li.profile .designation {
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.sidebar li.profile .designation {
+    font-size: 12px;
+}

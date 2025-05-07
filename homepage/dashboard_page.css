@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.maincontent {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.divdp {
+    padding: 20px;
+    background-color: #3498db;
+    border-radius: 12px 12px 0 0;
+}
+
+.dp2 {
+    width: auto;
+    height: 80px;
+    object-fit: cover;
+    align-self: center;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.userDetails {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+}
+
+.userDetails p {
+    font-size: 15px;
+    color: #333;
+    margin-right: auto;
+    padding-left: 10px;
+    font-weight: normal;
+}
+
+.userDetails strong {
+    color: black;
+    font-size: medium;
+    font-weight: normal;
+}
+
+/* Add styles for the chart container */
+.chartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Adjust max-width */
+    height: auto;
+    margin-left: 10px;
+    margin-top: 30px;
+    height: auto+10px;
+}
+
+.card-header {
+    background-color: rgb(118, 228, 118);
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.table-container {
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    margin-top: 3px;
+    border: bold black 1px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(73, 73, 206);
+    color: #fff;
+}

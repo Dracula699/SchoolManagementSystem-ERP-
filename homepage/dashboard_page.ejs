@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/homepage/dashboard_page.css">
+    <title>Dashboard Page</title>
+
+    <style>
+        /* Add your additional styles here */
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card {
+            flex: 1;
+            margin-right: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="maincontent" data-userdata='<%- JSON.stringify(userData) %>'>
+            <div class="main_content">
+                <!-- Existing code for user details -->
+                <div class="divdp">
+                    <img class="dp2" id="profileImagee" src="data:image/png;base64,<%= userData.image %>" alt="">
+                </div>
+                <div class="userDetails">
+                    <p><strong>Name:</strong> <%= userData.student_name %></p>
+                    <p><strong>Class:</strong> <%= userData.class %></p>
+                    <p><strong>Division:</strong> <%= userData.division %></p>
+                    <p><strong>Teacher:</strong> <%= userData.Teacher %></p>
+                    <p><strong>Roll_No:</strong> <%= userData.Roll_no %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+      
+        <div class="card">
+            <div class="card-header">Notice</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SrNo</th>
+                            <th>Date</th>
+                            <th>Class</th>
+                            <th>Notice</th>
+                            <th>PDF</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (userData.notice) { %>
+                            <tr>
+                                <td><%= userData.notice.id %></td>
+                                <td><%= new Date(userData.notice.notice_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td><%= userData.notice.class %></td>
+                                <td><%= userData.notice.notice_text %></td>
+                                <% if (userData.notice.pdf) { %>
+                                    <td><a href="/download-pdf/<%= userData.notice.id %>">Download</a></td>
+                                    <td><a href="/view-pdf/<%= userData.notice.id %>" target="_blank">View</a></td>
+                                <% } else { %>
+                                    <td>No PDF</td>
+                                    <td>No PDF</td>
+                                <% } %>
+                            </tr>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="6">No notice available</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+        <!-- Notice table -->
+
+
+
+        <!-- Circular table -->
+        <div class="card">
+            <div class="card-header">Circular</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Date</th>
+                            <th>Circular Text</th>
+                            <th>PDF</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (circulars.length > 0) { %>
+                            <!-- Display only the circular with the largest ID -->
+                            <% const latestCircular = circulars.reduce((prev, current) => (prev.circular_id > current.circular_id) ? prev : current) %>
+                            <tr>
+                                <td><%= latestCircular.circular_id %></td>
+                                <td><%= new Date(latestCircular.circular_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                                <td><%= latestCircular.circular_text %></td>
+                                <td>
+                                    <% if (latestCircular.pdf) { %>
+                                        <a href="/download-circular-pdf/<%= latestCircular.circular_id %>">Download</a>
+                                    <% } else { %>
+                                        No PDF
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if (latestCircular.pdf) { %>
+                                        <a href="/view-circular-pdf/<%= latestCircular.circular_id %>" target="_blank">view</a>
+                                    <% } else { %>
+                                        No PDF
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">No circular available</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

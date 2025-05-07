@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <!-- Link Styles -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <link rel="stylesheet" href="homepage.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="homepage.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="homepage.js"></script>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var contentDiv = document.getElementById('content');
+      var header = document.getElementById('headerspan');
+      var noticeBox = document.querySelector('.notice-box'); 
+  
+
+      
+      function loadContent(endpoint, linkName) {
+        fetch(endpoint)
+            .then(response => response.text())
+            .then(data => {
+                contentDiv.innerHTML = data;
+                header.innerHTML = linkName;
+
+                // Conditionally show/hide notice-box based on linkName
+                if (linkName.toLowerCase() === 'attendance') {
+                    noticeBox.style.display = 'block';
+                } else {
+                    noticeBox.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+  
+      function updateHeader(linkName) {
+        header.innerHTML = linkName;
+      }
+  
+      // Check if the user has just logged out
+      const userLoggedOut = sessionStorage.getItem('userLoggedOut');
+  
+      if (userLoggedOut) {
+        // User just logged out, always load the "about me" page
+        loadContent('/adminprofile', 'Profile');
+  
+        // Clear the logout flag
+        sessionStorage.removeItem('userLoggedOut');
+      } else {
+        // Retrieve the current section from sessionStorage
+        const currentSection = sessionStorage.getItem('currentSection');
+  
+        // If the user has previously visited a section, load that section
+        if (currentSection) {
+          loadContent(currentSection, document.querySelector(`[data-endpoint="${currentSection}"] .link_name`).textContent);
+        } else {
+          // If there is no previously visited section, load the about me page by default
+          loadContent('/adminprofile', 'Profile');
+        }
+      }
+
+      
+  
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var endpoint = this.getAttribute('data-endpoint');
+          var linkName = this.querySelector('.link_name').textContent;
+  
+          // Dynamically update the content and header
+          loadContent(endpoint, linkName);
+  
+          // Save the current section to sessionStorage
+          sessionStorage.setItem('currentSection', endpoint);
+        });
+      });
+  
+      // Get the current date and set it to the span
+      var currentDate = new Date();
+      var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById("currentDate").innerText = formattedDate;
+    });
+  
+    // Add a function to be called when the user logs out
+    function logout() {
+      // Set the logout flag in sessionStorage
+      sessionStorage.setItem('userLoggedOut', 'true');
+      // Perform the logout operation
+      // (add your logout logic here)
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+    var addStudentDiv = document.querySelector('.addstudent');
+    var uploadStudentLink = document.getElementById('uploadstudent');
+
+    // Initially hide the addstudent div
+    addStudentDiv.style.display = 'none';
+
+    function showAddStudentDiv() {
+        addStudentDiv.style.display = 'block';
+    }
+
+    function hideAddStudentDiv() {
+        addStudentDiv.style.display = 'none';
+    }
+
+    uploadStudentLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        var linkName = uploadStudentLink.querySelector('.link_name').textContent;
+
+        if (linkName === 'UploadStudent') {
+            showAddStudentDiv();
+        } else {
+            hideAddStudentDiv();
+        }
+    });
+});
+
+    
+
+
+          document.addEventListener('DOMContentLoaded', function () {
+            var notesContentButton = document.getElementById('notes');
+            var notesWrapper = document.querySelector('.mamnotes');
+            var navLinks = document.querySelectorAll('.nav-link');
+          
+            function showNotesWrapper() {
+              notesWrapper.style.display = 'block';
+              
+              localStorage.setItem('notesVisibility', 'visible');
+            }
+          
+            function hideNotesWrapper() {
+              notesWrapper.style.display = 'none';
+              
+              localStorage.setItem('notesVisibility', 'hidden');
+            }
+          
+            function handleNavLinkClick(linkName) {
+              // Hide notes wrapper for all links except "Notes/Content"
+              if (linkName !== 'Notes/Content') {
+                hideNotesWrapper();
+              } else {
+                showNotesWrapper();
+              }
+          
+              // Dynamically update the content and header
+              updateHeader(linkName);
+            }
+          
+            notesContentButton.addEventListener('click', function () {
+              var isNotesWrapperVisible = notesWrapper.style.display === 'block';
+          
+              if (isNotesWrapperVisible) {
+                hideNotesWrapper();
+              } else {
+                showNotesWrapper();
+              }
+            });
+          
+            navLinks.forEach(link => {
+              link.addEventListener('click', function (event) {
+                event.preventDefault();
+                var linkName = this.querySelector('.link_name').textContent;
+                handleNavLinkClick(linkName);
+              });
+            });
+          
+            // Check local storage for the saved visibility state
+            var savedVisibility = localStorage.getItem('notesVisibility');
+            if (savedVisibility === 'visible') {
+              showNotesWrapper();
+            } else {
+              hideNotesWrapper();
+            }
+          });
+          
+
+         
+          function populateSubjects() {
+            const subjectSelect = document.getElementById('subjectSelect');
+        
+            // Make an asynchronous request to the userSubjects endpoint
+            fetch('/userSubjects')
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                // Enable the subject dropdown
+                subjectSelect.disabled = false;
+        
+                // Clear existing options
+                subjectSelect.innerHTML = '<option value="" disabled selected>Select a Subject</option>';
+        
+                // Populate options based on the data received
+                data.forEach(subject => {
+                  const option = document.createElement('option');
+                  option.value = subject;
+                  option.text = subject;
+                  subjectSelect.appendChild(option);
+                });
+              })
+              .catch(error => {
+                console.error('Error fetching userSubjects:', error);
+              });
+          }
+        
+          // Add an event listener to trigger the function when the subjectSelect dropdown value changes
+          const subjectSelect = document.getElementById('subjectSelect');
+          subjectSelect.addEventListener('change', populateSubjects);
+
+
+  </script>
+</head>
+<body>
+
+
+
+
+  
+  <div class="sidebar">
+
+    <div class="logo_details">
+      <img src="/homepage/images/snbplogo.png" class="logo">
+      <div class="logo_name">S.N.B.P School</div>
+      
+    </div>
+
+      <ul class="nav-list">
+
+
+        <li>
+            <a class="nav-link" data-endpoint="/adminprofile" id="profile">
+              <i class="fas fa-user"></i>
+              <span class="link_name">Profile</span>
+            </a>
+            <span class="tooltip">Profile</span>
+          </li>
+
+        <li>
+            <a class="nav-link" data-endpoint="/uploadstudent" id="uploadstudent">
+              <i class="fas fa-blog"></i>
+              <span class="link_name">UploadStudent</span>
+            </a>
+            <span class="tooltip">UploadStudent</span>
+          </li>
+        <li>
+<!-- 
+          <a class="nav-link" data-endpoint="/About-Me" id="home">
+            <i class="fas fa-home"></i>
+            <span class="link_name">About Me</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li> -->
+      
+        <li>
+          <a class="nav-link" data-endpoint="/notice" id="notice">
+            <i class="fas fa-project-diagram"></i>
+            <span class="link_name">Notice</span>
+          </a>
+          <span class="tooltip">Notice</span>
+        </li>
+      
+        <li>
+          <a class="nav-link" data-endpoint="/Circular" id="circular">
+            <i class="fas fa-blog"></i>
+            <span class="link_name">Circular</span>
+          </a>
+          <span class="tooltip">Circular</span>
+        </li>
+
+              <li>
+        <a class="nav-link" data-endpoint="/Attendance" id="attendance">
+          <i class="fas fa-address-card"></i>
+          <span class="link_name">Attendance</span>
+        </a>
+        <span class="tooltip">Attendance</span>
+      </li>
+      
+        <li>
+          <a class="nav-link" data-endpoint="/Notes" id="notes">
+            <i class="fas fa-address-book"></i>
+            <span class="link_name">Notes/Content</span>
+          </a>
+          <span class="tooltip">Notes/Content</span>
+        </li>
+      
+
+      <li class="profile">
+        <div class="profile_details">
+            <img class="dp1" id="profileImage" src="data:image/jpeg;base64,<%= userData.imageData %>" alt="profile image">
+
+          <div class="profile_content">
+            <div class="name"><p><%= userData.admin_name %> <%= userData.admin_class %><%= userData.admin_division %></p></div>
+            <!-- <div class="designation"><p><%= userData.class %><%= userData.division %></p></div> -->
+          </div>
+        </div>
+        <!-- <i class="bx bx-log-out" id="log_out"></i> -->
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="home-section">
+    <div id="header" class="text">
+        <span id="headerspan">About Me</span>
+        <span id="currentDate"></span>
+        <img class="dp" id="profileImage" src="data:image/jpeg;base64,<%= userData.imageData%>" alt="profile image">
+        <p><%=userData.admin_name%> <%= userData.admin_class %><%= userData.admin_division %></p>
+    </div>
+    <div id="content" class="content"></div>
+<div>
+
+
+
+
+
+<div class="mamnotes">
+  <label for="classSelect"></label>
+  <select id="classSelect">
+    <option value="" disabled selected>Select a Class</option>
+    <!-- Add options for classes from 1 to 10 -->
+    <option value="1">Class 1</option>
+    <option value="2">Class 2</option>
+    <option value="3">Class 3</option>
+    <option value="4">Class 4</option>
+    <option value="5">Class 5</option>
+    <option value="6">Class 6</option>
+    <option value="7">Class 7</option>
+    <option value="8">Class 8</option>
+    <option value="9">Class 9</option>
+    <option value="10">Class 10</option>
+  </select>
+
+  <label for="divisionSelect"></label>
+  <select id="divisionSelect">
+    <option value="" disabled selected>Select a Division</option>
+    <!-- Add options for divisions from A to J -->
+    <!-- <option value="">All</option> -->
+    <option value="null">All</option>
+    <option value="A">Division A</option>
+    <option value="B">Division B</option>
+    <!-- Add options for other divisions -->
+    <option value="C">Division C</option>
+    <option value="D">Division D</option>
+    <option value="E">Division E</option>
+    <option value="F">Division F</option>
+    <option value="G">Division G</option>
+    <option value="H">Division H</option>
+    <option value="I">Division I</option>
+    <option value="J">Division J</option>
+  </select>
+
+  <label for="mamSubjectSelect"></label>
+  <select id="mamSubjectSelect" onchange="populateMamChapters()">
+    <option value="" disabled selected>Select a Subject</option>
+    <!-- Add options for subjects -->
+  </select>
+
+  <label for="mamChapterSelect"></label>
+  <select id="mamChapterSelect">
+    <option value="" disabled selected>Select a Chapter</option>
+    <!-- Add options for chapters -->
+  </select>
+
+  <label for="descriptionInput"></label>
+  <textarea id="descriptionInput" rows="4" cols="50" placeholder="Enter description"></textarea>
+
+  <div class="mamnotesfileinput">
+    <input type="file" id="pdfInput" accept=".pdf" data-file-name="">
+    <label for="pdfInput" class="custom-file-upload"></label>
+  </div>
+
+  <button onclick="uploadNotesData()">Upload Notes</button>
+</div>
+
+
+<div class="addstudent">
+    <form action="/addstudent" method="post" enctype="multipart/form-data">
+      <label for="student_name">Student Name:</label>
+      <input type="text" id="student_name" name="student_name" required>
+      <br>
+      <label for="class">Class:</label>
+      <input type="text" id="class" name="class" required>
+      <br>
+      <label for="division">Division:</label>
+      <input type="text" id="division" name="division" required>
+      <br>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+      <br>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <label for="Teacher">Teacher:</label>
+      <input type="text" id="Teacher" name="Teacher" required>
+      <br>
+      <label for="Roll_no">Roll No:</label>
+      <input type="text" id="Roll_no" name="Roll_no" required>
+      <br>
+      <button type="submit">Add Student</button>
+    </form>
+    
+  </div>
+
+</body>
+</html>
+
+
+

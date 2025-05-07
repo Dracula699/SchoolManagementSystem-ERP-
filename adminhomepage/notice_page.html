@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="notice_page.js"></script>
+    <title>Notice Page</title>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+        
+            var form = document.getElementById("noticeForm");
+            var formData = new FormData(form);
+        
+            fetch('/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                var messageDiv = document.getElementById("submissionMessage");
+                messageDiv.innerHTML = responseData.message;
+        
+                // Optionally, you can update other parts of your UI based on the response
+            })
+            .catch(error => console.error('Error submitting form:', error));
+        }
+        
+        document.getElementById("noticeForm").addEventListener("submit", submitForm);
+        
+        
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="notice">
+            <div class="notice-box">
+                <div id="submissionMessage"></div>
+                <!-- <form action="/submit" method="post" enctype="multipart/form-data" id="noticeForm"> -->
+                <form id="noticeForm" action="/submit" method="post" enctype="multipart/form-data">
+
+                    <div>
+                        <select class="class" name="classValue">
+                                <option value="none">none</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                         </select>
+                    </div>
+
+                    <div>
+                        <select class="division" name="Division">
+                            <option value="none">none</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <input type="date" name="Date" placeholder="Date">
+                    </div>
+
+                    <div>
+                        <textarea class="noticebox" name="Notice" placeholder="Notice"></textarea>
+                    </div>
+
+                    <div>
+                        <input type="file" name="File" accept=".pdf" placeholder="Upload PDF">
+                    </div>
+
+                    <div class="button">
+                        <button class="bluebutton" type="submit">Publish Notice</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e7e6e6;
+    }
+    
+    .wrapper {
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: space-between; /* Adjust according to your layout */
+        height: 100vh;
+    }
+    
+    .notice {
+        background-color: #f5f5f5;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 12px;
+        width: 100%;
+        height: 100%;
+        overflow: auto; 
+        top: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+    }
+    
+    #submissionMessage {
+        margin-bottom: 15px;
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    
+    form {
+        display: grid;
+        grid-gap: 10px;
+    }
+    
+    select,
+    input,
+    textarea {
+        width: calc(100% - 30px);
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-left: 13px;
+    }
+    
+ 
+    
+    .bluebutton {
+        background-color: lightgreen;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        margin-top: 2%;
+        margin-left: 38%;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .bluebutton:hover {
+        background-color: #2980b9;
+    }
+    
+    .noticebox {
+        resize: vertical;
+    }
+    
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+    
+    .btn {
+        border: 2px solid #3498db;
+        color: #3498db;
+        background-color: transparent;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+    
+    .btn:hover {
+        background-color: #3498db;
+        color: #fff;
+    }
+    
+</style>
+

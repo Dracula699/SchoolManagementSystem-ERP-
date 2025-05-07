@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.maincontent {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+    border-radius: 12px;
+    margin-left: 270px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_content {
+    text-align: center;
+    flex: 1;
+}
+
+.divdp {
+    padding: 20px;
+    background-color: #3498db;
+    border-radius: 12px 12px 0 0;
+}
+
+.stuname {
+    font-size: 100px;
+}
+
+.dp1 {
+    width: auto;
+    height: 90px; /* Ensure a square aspect ratio for a perfect circle */
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    align-self: center;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  .userDetails {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Change to column to stack the elements vertically */
+}
+
+.userDetails p {
+    margin: 8px 0;
+    font-size: 18px;
+    color: #333;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.userDetails strong {
+    color: black;
+    font-size: medium;
+}

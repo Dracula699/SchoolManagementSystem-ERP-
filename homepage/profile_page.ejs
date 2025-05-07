@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/homepage/profile_page.css">
+    <title>Circular Page</title>
+
+ 
+</head>
+
+<body>
+    <div class="maincontent" data-userdata='<%- JSON.stringify(userData) %>'>
+        <div class="main_content">
+            <div class="divdp">
+                <!-- Use data URI to display the image -->
+                <img class="dp1" id="profileImagee" src="data:image/png;base64,<%= userData.image %>" alt="">
+            </div>
+            <div class="userDetails">
+                <p><strong>Name:</strong> <%= userData.student_name %></p>
+                <p><strong>Class:</strong> <%= userData.class %></p>
+                <p><strong>Division:</strong> <%= userData.division %></p>
+                <p><strong>Teacher:</strong> <%= userData.Teacher %></p>
+                <p><strong>Roll_No:</strong> <%= userData.Roll_no %></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

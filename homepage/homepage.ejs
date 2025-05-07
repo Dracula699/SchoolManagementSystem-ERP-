@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <!-- Link Styles -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <link rel="stylesheet" href="homepage1.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="homepage.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="homepage.js"></script>
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var contentDiv = document.getElementById('content');
+      var header = document.getElementById('headerspan');
+      var noticeBox = document.querySelector('.notice-box'); 
+  
+
+      
+      function loadContent(endpoint, linkName) {
+        fetch(endpoint)
+            .then(response => response.text())
+            .then(data => {
+                contentDiv.innerHTML = data;
+                header.innerHTML = linkName;
+
+                // Conditionally show/hide notice-box based on linkName
+                if (linkName.toLowerCase() === 'attendance') {
+                    noticeBox.style.display = 'block';
+                } else {
+                    noticeBox.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+  
+      function updateHeader(linkName) {
+        header.innerHTML = linkName;
+      }
+  
+      // Check if the user has just logged out
+      const userLoggedOut = sessionStorage.getItem('userLoggedOut');
+  
+      if (userLoggedOut) {
+        // User just logged out, always load the "about me" page
+        loadContent('/About-Me', 'About Me');
+  
+        // Clear the logout flag
+        sessionStorage.removeItem('userLoggedOut');
+      } else {
+        // Retrieve the current section from sessionStorage
+        const currentSection = sessionStorage.getItem('currentSection');
+  
+        // If the user has previously visited a section, load that section
+        if (currentSection) {
+          loadContent(currentSection, document.querySelector(`[data-endpoint="${currentSection}"] .link_name`).textContent);
+        } else {
+          // If there is no previously visited section, load the about me page by default
+          loadContent('/About-Me', 'About Me');
+        }
+      }
+
+      
+  
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var endpoint = this.getAttribute('data-endpoint');
+          var linkName = this.querySelector('.link_name').textContent;
+  
+          // Dynamically update the content and header
+          loadContent(endpoint, linkName);
+  
+          // Save the current section to sessionStorage
+          sessionStorage.setItem('currentSection', endpoint);
+        });
+      });
+  
+      // Get the current date and set it to the span
+      var currentDate = new Date();
+      var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById("currentDate").innerText = formattedDate;
+    });
+  
+    // Add a function to be called when the user logs out
+    function logout() {
+      // Set the logout flag in sessionStorage
+      sessionStorage.setItem('userLoggedOut', 'true');
+      // Perform the logout operation
+      // (add your logout logic here)
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var notesContentButton = document.getElementById('studentnotes');
+      var notesWrapper = document.querySelector('.noteswrapper');
+      var navLinks = document.querySelectorAll('.nav-link');
+    
+      function showNotesWrapper() {
+        notesWrapper.style.display = 'block';
+      }
+    
+      function hideNotesWrapper() {
+        notesWrapper.style.display = 'none';
+      }
+    
+      function handleNavLinkClick(linkName) {
+        // Hide notes wrapper for all links except "Studentnotes"
+        if (linkName !== 'Studentnotes') {
+          hideNotesWrapper();
+          sessionStorage.removeItem('notesVisible');
+        } else {
+          showNotesWrapper();
+          sessionStorage.setItem('notesVisible', 'true');
+        }
+    
+        // Dynamically update the content and header
+        updateHeader(linkName);
+      }
+    
+      // Check if the "Studentnotes" link is clicked or if the current page is "Studentnotes"
+      var isStudentNotesPage = window.location.pathname.includes('studentnotes');
+    
+      if (isStudentNotesPage || sessionStorage.getItem('notesVisible') === 'true') {
+        showNotesWrapper();
+      }
+    
+      notesContentButton.addEventListener('click', function () {
+        var isNotesWrapperVisible = notesWrapper.style.display === 'block';
+    
+        if (isNotesWrapperVisible) {
+          hideNotesWrapper();
+          sessionStorage.removeItem('notesVisible');
+        } else {
+          showNotesWrapper();
+          sessionStorage.setItem('notesVisible', 'true');
+        }
+      });
+    
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var linkName = this.querySelector('.link_name').textContent;
+          handleNavLinkClick(linkName);
+        });
+      });
+    });
+    
+    
+
+
+          document.addEventListener('DOMContentLoaded', function () {
+            var notesContentButton = document.getElementById('notes');
+            var notesWrapper = document.querySelector('.mamnotes');
+            var navLinks = document.querySelectorAll('.nav-link');
+          
+            function showNotesWrapper() {
+              notesWrapper.style.display = 'block';
+              
+              localStorage.setItem('notesVisibility', 'visible');
+            }
+          
+            function hideNotesWrapper() {
+              notesWrapper.style.display = 'none';
+              
+              localStorage.setItem('notesVisibility', 'hidden');
+            }
+          
+            function handleNavLinkClick(linkName) {
+              // Hide notes wrapper for all links except "Notes/Content"
+              if (linkName !== 'Notes/Content') {
+                hideNotesWrapper();
+              } else {
+                showNotesWrapper();
+              }
+          
+              // Dynamically update the content and header
+              updateHeader(linkName);
+            }
+          
+            notesContentButton.addEventListener('click', function () {
+              var isNotesWrapperVisible = notesWrapper.style.display === 'block';
+          
+              if (isNotesWrapperVisible) {
+                hideNotesWrapper();
+              } else {
+                showNotesWrapper();
+              }
+            });
+          
+            navLinks.forEach(link => {
+              link.addEventListener('click', function (event) {
+                event.preventDefault();
+                var linkName = this.querySelector('.link_name').textContent;
+                handleNavLinkClick(linkName);
+              });
+            });
+          
+            // Check local storage for the saved visibility state
+            var savedVisibility = localStorage.getItem('notesVisibility');
+            if (savedVisibility === 'visible') {
+              showNotesWrapper();
+            } else {
+              hideNotesWrapper();
+            }
+          });
+        
+  </script>
+</head>
+<body>
+
+  <div class="sidebar">
+
+    <div class="logo_details">
+      <img src="/homepage/images/snbplogo.png" class="logo">
+      <div class="logo_name">SNBP INTERNATIONAL School</div>
+      
+    </div>
+
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link" data-endpoint="/About-Me" id="home">
+            <i class="fas fa-home"></i>
+            <span class="link_name">About Me</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+      
+        <li>
+          <a class="nav-link" data-endpoint="/Profile" id="profile">
+            <i class="fas fa-user"></i>
+            <span class="link_name">Profile</span>
+          </a>
+          <span class="tooltip">Profile</span>
+        </li>
+
+      <li>
+        <a class="nav-link" data-endpoint="/student-notice" id="student-notice">
+          <i class="fas fa-home"></i>
+          <span class="link_name">StudentNotice</span>
+        </a>
+        <span class="tooltip">StudentNotice</span>
+      </li>
+      
+      <li>
+        <a class="nav-link" data-endpoint="/student-circular" id="student-circular">
+          <i class="fas fa-home"></i>
+          <span class="link_name">StudentCircular</span>
+        </a>
+        <span class="tooltip">StudentCircular</span>
+      </li>
+
+      <li>
+        <a class="nav-link" data-endpoint="/student-notes" id="studentnotes">
+          <i class="fas fa-home"></i>
+          <span class="link_name">Studentnotes</span>
+        </a>
+        <span class="tooltip">Studentnotes</span>
+      </li>
+
+
+            
+      <li>
+        <a class="nav-link" data-endpoint="/Tracking" id="tracking">
+          <i class="fas fa-map-pin"></i>
+          <span class="link_name">Tracking</span>
+        </a>
+        <span class="tooltip">Tracking</span>
+      </li>
+    </ul>
+
+      <li class="profile">
+        <div class="profile_details">
+          <img class="dp1" id="profileImage" src="data:image/jpeg;base64,<%= userData.image %>" alt="profile image">
+          <div class="profile_content">
+            <div class="name"><p><%= userData.student_name %> <%= userData.class %><%= userData.division %></p></div>
+            <!-- <div class="designation"><p><%= userData.class %><%= userData.division %></p></div> -->
+          </div>
+        </div>
+        <!-- <i class="bx bx-log-out" id="log_out"></i> -->
+      </li>
+    </ul>
+  </div>
+
+
+<div class="home-section">
+    <div id="header" class="text">
+       <span id="headerspan">About Me</span>
+        <span id="currentDate"></span>
+       <img class="dp" id="profileImage" src="data:image/jpeg;base64,<%= userData.image %>" alt="profile image" >
+        <p ><%=userData.student_name%> <%= userData.class %><%= userData.division %></p>
+    </div>
+    <div id="content" class="content" style="overflow-y: auto;  max-height: calc(100vh - 80px);"></div>
+<div>
+
+
+  <div class="noteswrapper" style="overflow-y: auto;  max-height: calc(100vh - 80px);">
+    <label for="subjectSelect">Select Subject:</label>
+    <select id="subjectSelect" onchange="populateChapters()">
+      <option value="" disabled selected>Select a Subject</option>
+    </select>
+  
+    <label for="chapterSelect">Select Chapter:</label>
+    <select id="chapterSelect" onchange="checkNotesData()">
+      <option value="" disabled selected>Select a Chapter</option>
+    </select>
+  
+    <div id="resultDiv" class="resultDiv" style="overflow-y: auto;"></div>
+  </div>
+
+</body>
+</html>
+
+
+
